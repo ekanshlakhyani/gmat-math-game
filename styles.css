@@ -162,24 +162,24 @@ main {
 
 .mode-tooltip {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 12px;
+    left: 12px;
+    right: 12px;
     background: rgba(30, 64, 175, 0.95);
     color: white;
-    padding: 15px;
+    padding: 12px;
     border-radius: 8px;
     font-size: 0.85rem;
-    line-height: 1.5;
+    line-height: 1.4;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    /* never intercept clicks - pass through to underlying card/button */
+    transition: opacity 0.25s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    z-index: 10;
+    z-index: 5;
     box-shadow: var(--shadow-lg);
 }
 
@@ -190,7 +190,13 @@ main {
 
 .mode-card:hover .mode-tooltip {
     opacity: 1;
-    pointer-events: auto;
+}
+
+/* Responsive: stack cards on small screens */
+@media (max-width: 768px) {
+    .mode-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ==================== DIFFICULTY GRID ==================== */
@@ -809,6 +815,31 @@ main {
     #answerInput,
     .btn-submit {
         width: 100%;
+    }
+
+    /* Larger tap targets and improved spacing for mobile */
+    .mode-card {
+        padding: 22px;
+        border-radius: 12px;
+        min-height: 140px;
+    }
+
+    .mode-icon {
+        font-size: 3rem;
+        margin-bottom: 12px;
+    }
+
+    .btn,
+    .btn-submit {
+        padding: 14px 18px;
+        font-size: 1rem;
+        min-height: 48px;
+        touch-action: manipulation;
+    }
+
+    #answerInput {
+        font-size: 1.05rem;
+        padding: 12px 14px;
     }
 }
 

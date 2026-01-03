@@ -22,10 +22,29 @@ function showScreen(screenId) {
 
 // ==================== MODE SELECTION ====================
 document.querySelectorAll('.mode-card').forEach(card => {
-    card.querySelector('.btn').addEventListener('click', () => {
+    // Make entire card clickable (desktop + mobile)
+    card.addEventListener('click', (e) => {
+        // Ignore clicks that originate from interactive elements handled separately
         gameState.mode = card.dataset.mode;
         showDifficultySelection();
     });
+
+    // Also bind the inner button explicitly and stop propagation so behavior is consistent
+    const innerBtn = card.querySelector('.btn');
+    if (innerBtn) {
+        innerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            gameState.mode = card.dataset.mode;
+            showDifficultySelection();
+        });
+    }
+
+    // Support touch devices where touchend is more reliable for taps
+    card.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        gameState.mode = card.dataset.mode;
+        showDifficultySelection();
+    }, { passive: false });
 });
 
 function showDifficultySelection() {
