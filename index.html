@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMAT Math Mastery - Squares & Roots</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🎯 GMAT Math Mastery</h1>
+                <p>Master Squares & Roots for Peak Performance</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="app">
+            <!-- Mode Selection Screen -->
+            <section id="modeSelection" class="screen active">
+                <div class="screen-content">
+                    <h2>Choose Your Challenge</h2>
+                    <p class="subtitle">Select the game mode to begin</p>
+
+                    <div class="mode-grid">
+                        <div class="mode-card" data-mode="squares">
+                            <div class="mode-icon">²</div>
+                            <h3>Squares</h3>
+                            <p>Master perfect squares (x²)</p>
+                            <button class="btn btn-primary">Play</button>
+                            <div class="mode-tooltip">Perfect squares practice with 3 progressive difficulty levels.
+                                From basic squares (2-9) to challenging ranges (2-29). Essential for GMAT!</div>
+                        </div>
+
+                        <div class="mode-card" data-mode="cubes">
+                            <div class="mode-icon">³</div>
+                            <h3>Cubes</h3>
+                            <p>Master perfect cubes (x³)</p>
+                            <button class="btn btn-primary">Play</button>
+                            <div class="mode-tooltip">Perfect cubes with 3 progressive difficulty levels. Start from
+                                basic cubes and work your way up to challenging ranges.</div>
+                        </div>
+
+                        <div class="mode-card" data-mode="combined">
+                            <div class="mode-icon">⚡</div>
+                            <h3>Combined</h3>
+                            <p>Mix of squares & cubes</p>
+                            <button class="btn btn-primary">Play</button>
+                            <div class="mode-tooltip">Challenge yourself with random squares and cubes. Never know
+                                what's coming! 3 difficulty levels to test your skills.</div>
+                        </div>
+
+                        <div class="mode-card" data-mode="roots">
+                            <div class="mode-icon">√</div>
+                            <h3>Roots</h3>
+                            <p>Find the root - figure it out yourself</p>
+                            <button class="btn btn-primary">Play</button>
+                            <div class="mode-tooltip">Given a perfect square or cube, find the base number. Test your
+                                root estimation skills with 4 difficulty levels including mystery mode!</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Difficulty Selection Screen -->
+            <section id="difficultySelection" class="screen">
+                <div class="screen-content">
+                    <button class="btn-back" id="backToMode">← Back</button>
+                    <h2>Select Difficulty</h2>
+                    <p class="subtitle" id="difficultySubtitle">Choose your challenge level</p>
+
+                    <div class="difficulty-grid" id="difficultyGrid"></div>
+                </div>
+            </section>
+
+            <!-- Question Count Selection -->
+            <section id="questionSelection" class="screen">
+                <div class="screen-content">
+                    <button class="btn-back" id="backToDifficulty">← Back</button>
+                    <h2>How Many Questions?</h2>
+                    <p class="subtitle">More questions = bigger challenge</p>
+
+                    <div class="question-grid">
+                        <div class="question-card" data-count="3">
+                            <div class="q-number">3</div>
+                            <p>Questions</p>
+                            <span class="q-time">~2 min</span>
+                        </div>
+                        <div class="question-card" data-count="5">
+                            <div class="q-number">5</div>
+                            <p>Questions</p>
+                            <span class="q-time">~3 min</span>
+                        </div>
+                        <div class="question-card" data-count="10">
+                            <div class="q-number">10</div>
+                            <p>Questions</p>
+                            <span class="q-time">~6 min</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Screen -->
+            <section id="gameScreen" class="screen">
+                <div class="game-content">
+                    <!-- Game Header -->
+                    <div class="game-header">
+                        <div class="game-info">
+                            <h2 id="gameTitle">Squares - Level 1</h2>
+                            <p id="gameSubtitle">Question 1 of 3</p>
+                        </div>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <span class="stat-label">Score</span>
+                                <span class="stat-value" id="currentScore">0</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Strikes</span>
+                                <span class="stat-value" id="strikeCount">
+                                    <span class="strike">●</span>
+                                    <span class="strike">●</span>
+                                    <span class="strike">●</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question -->
+                    <div class="question-box">
+                        <div class="question-text" id="questionText">5² = </div>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="input-area">
+                        <input type="text" id="answerInput" placeholder="Enter your answer" autocomplete="off">
+                        <div id="inputHelper" class="input-helper"
+                            style="display: none; font-size: 0.9rem; color: var(--text-light); margin-top: 8px; text-align: center;">
+                            If the number isn't a perfect square or cube, tell us the range like "7-8" or "3-4" (e.g.,
+                            for 50)</div>
+                        <button id="submitBtn" class="btn btn-submit">Submit</button>
+                    </div>
+
+                    <!-- Feedback -->
+                    <div class="feedback" id="feedback"></div>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section id="resultsScreen" class="screen">
+                <div class="screen-content">
+                    <div class="results-card">
+                        <h2>🎉 Game Over!</h2>
+
+                        <div class="results-stats">
+                            <div class="result-item">
+                                <span class="label">Correct Answers</span>
+                                <span class="value" id="resultCorrect">8</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">Total Time</span>
+                                <span class="value" id="resultTime">2:45s</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">Avg Time/Question</span>
+                                <span class="value" id="resultAvgTime">18s</span>
+                            </div>
+                        </div>
+
+                        <div class="score-display">
+                            <p class="score-label">Final Score</p>
+                            <p class="score-value" id="finalScore">850,000</p>
+                        </div>
+
+                        <div class="result-message" id="resultMessage"></div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+                            <button class="btn btn-secondary" id="homeBtn">Home</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Perfect your GMAT prep with focused practice</p>
+        </footer>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
